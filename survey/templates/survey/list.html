@@ -1,0 +1,53 @@
+{% extends "_base.html" %}
+{% block title %}List - Surveys{% endblock %}
+
+{% block content %}
+<div class="ui center aligned basic very padded segment">
+    <h1 class="ui header">Welcome {{ request.user.username }}</h1>
+    <a href="{% url 'survey-create' %}">
+        <div class="ui primary button">Create a new survey</div>
+    </a>
+</div>
+<div class="ui center aligned basic very padded segment">
+    {% if surveys %}
+    <h2 class="ui header">Your surveys</h2>
+    <table class="ui celled table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Created At</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for survey in surveys %}
+            <tr>
+                <td>{{ survey.title }}</td>
+                <td>{{ survey.created_at }}</td>
+                <td>
+                    {% if survey.is_active %}
+                    <a href="{% url 'survey-detail' survey.pk %}">
+                        <div class="ui button">view</div>
+                    </a>
+                    {% else %}
+                    <a href="{% url 'survey-edit' survey.pk %}">
+                        <div class="ui button">edit</div>
+                    </a>
+                    {% endif %}
+                    <form method="post" action="{% url 'survey-delete' survey.pk %}" style="display: inline-block;">
+                        {% csrf_token %}
+                        <button class=" ui button">delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <h2 class="ui header">Your surveys
+        <div class="sub header">You don't have any surveys yet, try creating one first.</div>
+    </h2>
+    {% endif %}
+
+</div>
+{% endblock %}

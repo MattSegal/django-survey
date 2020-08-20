@@ -1,0 +1,26 @@
+{% extends "_base.html" %}
+{% block title %}View - Surveys{% endblock %}
+
+{% block content %}
+<div class="ui center aligned basic very padded segment">
+    <h1 class="ui header">{{ survey.title }}</h1>
+    <h3 class="ui header">You have {{ num_submissions }} submissions</h3>
+    <h3 class="ui header">Survey URL: <a href="{{public_url}}">{{ public_url }}</a></h3>
+    <h1 class="ui header dividing">Results</h1>
+    {% for question in questions %}
+    <div class="ui basic padded segment left aligned">
+        <h4 class="ui header">
+            Question {{ forloop.counter }} / {{ questions|length }}: {{ question.prompt }}
+        </h4>
+        <ul>
+            {% for option in question.option_set.all %}
+            <li>
+                {{ forloop.counter }}) {{option.text}}: {{ option.percent|floatformat }}%
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endfor %}
+
+</div>
+{% endblock %}

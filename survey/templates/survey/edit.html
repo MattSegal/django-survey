@@ -1,0 +1,38 @@
+{% extends "_base.html" %}
+{% block title %}Create - Surveys{% endblock %}
+
+{% block content %}
+<div class="ui center aligned basic very padded segment">
+    <h1 class="ui header dividing">Add questions to {{survey.title}}</h1>
+
+    <div class="ui container left aligned">
+        {% for question in questions %}
+        <div class="ui basic padded segment">
+            <h4 class="ui header">
+                Question {{ forloop.counter }} / {{ questions|length }}: {{ question.prompt }}
+            </h4>
+            <ul>
+                {% for option in question.option_set.all %}
+                <li>
+                    {{ forloop.counter }}) {{option.text}}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endfor %}
+        <a href="{% url 'survey-question-create' survey.pk %}">
+            <div class="ui button">Add a question</div>
+        </a>
+        {% if questions|length > 0 %}
+        <div class="ui divider"></div>
+        <form style="display: inline-block;" method="post">
+            {% csrf_token %}
+            <button type="submit" class="ui primary button">Activate survey</button>
+        </form>
+        <a href="{% url 'survey-list' %}">
+            <div class="ui button">Back</div>
+        </a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

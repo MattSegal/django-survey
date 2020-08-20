@@ -1,0 +1,49 @@
+{% extends "_base.html" %}
+{% block title %}Question - Surveys{% endblock %}
+
+{% block content %}
+<div class="ui center aligned basic very padded segment">
+    <h1 class="ui header dividing">Add options to question</h1>
+    <div class="ui container left aligned">
+        <h4 class="ui header">
+            Question: {{ question.prompt }}
+        </h4>
+        <ul>
+            {% for option in options %}
+            <li>
+                {{ forloop.counter }}) {{option.text}}
+            </li>
+            {% endfor %}
+        </ul>
+        <form class="ui form {% if form.errors %}error{% endif %}" method="post" novalidate>
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="field {% if field.errors %}error{% endif %}">
+                <label>{{ field.label_tag }}</label>
+                {{ field }}
+            </div>
+            {% endfor %}
+            <button type="submit" class="ui primary button">Add new option</button>
+            <div class="ui message error">
+                <div class="header">We had some issues</div>
+                <ul class="list">
+                    {% for field in form %}
+                    {% for error in field.errors %}
+                    <li>{{ field.label_tag }} {{ error }}</li>
+                    {% endfor %}
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </form>
+        {% if options|length > 0 %}
+        <div class="ui divider"></div>
+        <a href="{% url 'survey-edit' survey.pk %}">
+            <div class="ui button">Done adding options</div>
+        </a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "_base.html" %}
+{% block title %}Surveys{% endblock %}
+
+{% block content %}
+<div class="ui center aligned basic very padded segment">
+    <h1 class="ui header">Survey Creator
+        <div class="sub header">Create surveys and share them with your friends</div>
+    </h1>
+    <a href="{% url 'login' %}">
+        <div class="ui primary button">Get Started</div>
+    </a>
+</div>
+{% endblock %}
