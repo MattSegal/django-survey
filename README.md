@@ -21,3 +21,21 @@ pip install -r requirements.txt
 ./manage.py createsuperuser
 ./manage.py runserver
 ```
+
+# Data model
+
+The app uses, roughly, the following data model:
+
+![data model](docs/data-model.png)
+
+# User journeys
+
+There are two main user journeys, one for the users creating the surveys and another for the users taking the surveys.
+
+![journey-creator](docs/journey-creator.png)
+
+![journey-taker](docs/journey-taker.png)
+
+# Wireframes
+
+Wireframes of each page can be found in [docs/wireframes]

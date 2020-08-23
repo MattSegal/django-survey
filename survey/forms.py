@@ -22,12 +22,6 @@ class OptionForm(forms.ModelForm):
 
 
 class AnswerForm(forms.Form):
-
-    # option = forms.ChoiceField(choices=((1, 1), (2, 2)), widget=forms.RadioSelect, required=True)
-
-    # def __init__(self, *args, **kwargs):
-    #     super().__init__(*args, **kwargs)
-
     def __init__(self, *args, **kwargs):
         options = kwargs.pop("options")
         # Options must be a list of Option objects
