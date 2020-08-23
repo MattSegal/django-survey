@@ -38,4 +38,4 @@ There are two main user journeys, one for the users creating the surveys and ano
 
 # Wireframes
 
-Wireframes of each page can be found in [docs/wireframes]
+Wireframes of each page can be found in [here](docs/wireframes)
