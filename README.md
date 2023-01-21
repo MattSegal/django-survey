@@ -1,6 +1,6 @@
 # Survey app
 
-A basic survey web app written in Django with no JavaScript.
+A basic survey web app written in Django with no JavaScript. Read more about how it was written in this [accompanying blog post](https://mattsegal.dev/django-survey-project.html)
 
 This is a website where users can create surveys and get answers to their questions. A user can sign up, create a survey, add questions to the survey, and then send a link to other people. When the survey is complete, the user can see what percentage of people answered each question.
 
